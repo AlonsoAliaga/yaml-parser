@@ -27,15 +27,12 @@
       ga('send', 'pageview');
     </script> -->
   </head>
-  <body onload="toggleDarkmode()">
+  <body onload="toggleDarkmode(); forceParser();">
     <div class="content">
       <div class="header">
         <h1 style="font-family: MinecraftBold;">Online <a href="https://yaml.org/" rel="noopener" target="_blank">YAML</a> Parser</h1>
-        
-        <!-- <input style="width: 100px;" class="form-control" id="emojis" type="button" maxlength="100" placeholder="Pick your emoji"
-        value="Dark mode 👁‍🗨" onclick="javascript: toggleDarkmode()"> -->
         <span style="font-family: MinecraftBold;">Options:</span>
-        <div id="appearance" style="display: inline-block;font-family: MinecraftBold;">
+        <div id="appearance" style="display: inline-block;font-family: MinecraftBold;padding: 5px 10px 5px 10px;">
           <input type="checkbox" checked id="darkmode" onclick="toggleDarkmode();"></input>
           <label for="darkmode" style="margin-bottom: 0px;margin-top: 0px;"> Dark Mode 👁‍🗨</label>
         </div>
@@ -44,55 +41,45 @@
       </div>
       <div id="left">
         <form id="yaml_form" method="POST" action="/">
-          <textarea id="yaml" class="yaml" name="yaml">{{ yaml }}</textarea>
-          <div style="font-family: MinecraftRegular;">
+          <textarea id="yaml" class="yaml" name="yaml" placeholder="Paste the content of your file to validate it!">#This parser ignores comments.
+- just: write some
+- yaml: 
+  - [here, and]
+  - {it: updates, in: real-time}
+- like: magic.
+
+- use: it
+- to:
+  - [find, errors, in]
+  - [your, config, files]</textarea>
+          <div style="font-family: MinecraftRegular;font-size: 18px;">
             Output:
             <input type="radio" name="type" id="type_json" value="json"
             {% ifequal type "json" %}checked="checked"{% endifequal %}>
-            <label for="type_json">json</label>
+            <label for="type_json">JSON</label>
             <input type="radio" name="type" id="type_python" value="python"
             {% ifequal type "python" %}checked="checked"{% endifequal %}>
-            <label for="type_python">python</label>
+            <label for="type_python">Python</label>
             <input type="radio" name="type" id="type_canonical_yaml" value="canonical_yaml"
             {% ifequal type "canonical_yaml" %}checked="checked"{% endifequal %}>
-            <label for="type_canonical_yaml">canonical yaml</label>
-
-            <!-- <a id="link" href="?yaml={{ yaml|urlencode }}&type={{ type|urlencode }}">
-              Link to this page
-            </a> -->
-
+            <label for="type_canonical_yaml">Canonical YAML</label>
           </div>
-          <!-- <div id="pay_my_bills">
-            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-            <ins class="adsbygoogle"
-              style="display:inline-block;width:468px;height:60px"
-              data-ad-client="ca-pub-7342863608664054"
-              data-ad-slot="1929248609"></ins>
-            <script>
-            (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
-          </div> -->
         </form>
-        <form id="url_form" action="/">
-          <input name="url" value="{{ url|default:"http://" }}">
+        <!-- <form id="url_form" action="./index.html">
+          <input name="url" value="http://" placeholder="Enter the URL to the content to parse!">
           <input style="font-family: MinecraftBold;" type="submit" value="Validate URL">
-        </form>
+        </form> -->
       </div>
       <div id="right">
         <div class="code">
           <h2 style="font-family: MinecraftBold;">Output</h2>
-          <pre id="output">{{ output|escape }}</pre>
+          <pre id="output">Loading..</pre>
         </div>
         <div style="font-size: 18px ;padding-top: 20px;padding-bottom: 20px; font-family: MinecraftRegular;" class="examples">
           <h2 style="font-size: 18px ;text-align: left; font-family: MinecraftBold;">More tools for you:</h2>
           <span style="font-size: 15px;">💠</span> <span class="rainbow" style="color:transparent"><a href="http://alonsoaliaga.github.io/generator">HEX Generator (RBG)</a></span>
           <br><br><br>
           <h2 style="color: transparent;font-size: 18px ;text-align: center; font-family: MinecraftBold;"><a href="https://alonsoaliaga.github.io" rel="noopener" target="_blank">AlonsoAliaga Development</a></h2>
-          <!-- <ol id="examples_list">
-          {% for example in examples %}
-            <li><a href="?yaml={{ example|urlencode }}">{{ example|slice:"40"|escape }}...</a></li>
-          {% endfor %}
-          </ol> -->
         </div>
       </div>
       <div class="clear">
@@ -104,6 +91,7 @@
         <button class="buttonface"><a href="https://alonsoaliaga.github.io"><img src="https://raw.githubusercontent.com/AlonsoAliaga/alonsoaliaga.github.io/main/assets/img/apple-touch-icon.png"></a></button>
       </div>
     </div>
+    <script ></script>
   </div>
 
   <!-- <script src="jquery-1.6.1.min.js"></script> -->
@@ -112,11 +100,24 @@
   <!-- <script src="script.js"></script> -->
   
   <script>
+  function forceParser() {
+    setTimeout(()=>{
+      $("#yaml_form").submit();
+    },1000);
+  }
   function toggleDarkmode() {
       if (document.getElementById('darkmode').checked == true) {
         document.body.classList.add('dark');
+        document.getElementById('yaml').classList.add("darktextboxes");
+        
+        document.getElementById('appearance').classList.remove("lightbuttonboxes");
+        document.getElementById('appearance').classList.add("darkbuttonboxes");
       } else {
         document.body.classList.remove('dark');
+        document.getElementById('yaml').classList.remove("darktextboxes");
+        //Buttons
+        document.getElementById('appearance').classList.remove("darkbuttonboxes");
+        document.getElementById('appearance').classList.add("lightbuttonboxes");
       }
       //console.log("Dark mode is now: "+(document.getElementById('darkmode').checked))
   }
@@ -138,6 +139,7 @@
         type: $('input:radio[name=type]:checked').val()
       };
       $.ajax({
+        //Yeah, i need to fix this..
         url: "https://yaml-online-parser.appspot.com/ajax?callback=?",
         data: inputData,
         success: function(data) {
@@ -156,13 +158,6 @@
       });
       return false;
     });
-
-    $("#examples_list a").click(function() {
-      $("#yaml").val(urldecode($(this).attr("href").replace("?yaml=", "")));
-      $("#yaml_form").submit();
-      return false;
-    });
-
     $('textarea#yaml').autoResize({
       // On resize:
       onResize: function() {
@@ -177,7 +172,6 @@
       // More extra space:
       extraSpace: 40
     }).keydown();
-
   });
   </script>
   </body>

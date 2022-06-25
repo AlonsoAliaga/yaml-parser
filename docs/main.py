@@ -74,7 +74,7 @@ class MainHandler(webapp2.RequestHandler):
 
         path = os.path.join(os.path.dirname(__file__), 'index.html')
         self.response.out.write(template.render(path, template_values))
-
+        print("aa")
     def post(self) :
         return self.get()
 

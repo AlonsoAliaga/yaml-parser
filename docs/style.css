@@ -201,3 +201,24 @@ body {
     border-color:#2C3844;
     color:white;
   }
+  .lightbuttonboxes {
+    border-radius: 25px;
+    border-color:#333333;
+    background-color:#f8fdc9;
+    color:rgb(39, 39, 39);
+    border-style: solid;
+    border-width: 2px;
+  }
+  .darkbuttonboxes {
+    border-radius: 25px;
+    border-color:#25172f;
+    background-color:#ffd5f2;
+    color:rgb(39, 39, 39);
+    border-style: solid;
+    border-width: 2px;
+  }
+  .darktextboxes {
+    background-color:#e4d2de;
+    border-color:#43245c;
+    color:rgb(39, 39, 39);
+  }
