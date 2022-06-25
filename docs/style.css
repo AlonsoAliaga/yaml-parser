@@ -1,6 +1,24 @@
 body {
     text-align: center;
   }
+  .rainbow {
+      position:relative;
+      background: linear-gradient(to right, #6666ff, #0099ff , #00ff00, #ff3399, #6666ff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      animation: rainbow_animation 2s ease-in-out infinite;
+      background-size: 400% 100%;
+  }
+  @keyframes rainbow_animation {
+      0%,100% {
+          background-position: 0 0;
+      }
+  
+      50% {
+          background-position: 100% 0;
+      }
+  }
   @font-face {
      font-family: MinecraftRegular;
      src: url(https://raw.githubusercontent.com/AlonsoAliaga/generator/main/assets/fonts/MinecraftRegular.otf);
@@ -146,6 +164,17 @@ body {
   .clear {
     clear: both;
   }
+  .rainbow a:visited {
+    text-decoration: underline;
+    color: inherit;
+  }
+  .rainbow a {
+    color: inherit
+  }
+  .rainbow a:hover {
+    text-decoration: underline;
+    color: inherit;
+  }
   a:visited,a {
     color: rgb(23, 142, 246);
     text-decoration: none;
@@ -171,22 +200,4 @@ body {
     background-color:#27152c;
     border-color:#2C3844;
     color:white;
-  }
-  .rainbow {
-      position:relative;
-      background: linear-gradient(to right, #6666ff, #0099ff , #00ff00, #ff3399, #6666ff);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      animation: rainbow_animation 2s ease-in-out infinite;
-      background-size: 400% 100%;
-  }
-  @keyframes rainbow_animation {
-      0%,100% {
-          background-position: 0 0;
-      }
-  
-      50% {
-          background-position: 100% 0;
-      }
   }

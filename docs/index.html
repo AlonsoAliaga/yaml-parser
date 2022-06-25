@@ -27,7 +27,7 @@
       ga('send', 'pageview');
     </script> -->
   </head>
-  <body>
+  <body onload="toggleDarkmode()">
     <div class="content">
       <div class="header">
         <h1 style="font-family: MinecraftBold;">Online <a href="https://yaml.org/" rel="noopener" target="_blank">YAML</a> Parser</h1>
@@ -85,9 +85,9 @@
         </div>
         <div style="font-size: 18px ;padding-top: 20px;padding-bottom: 20px; font-family: MinecraftRegular;" class="examples">
           <h2 style="font-size: 18px ;text-align: left; font-family: MinecraftBold;">More tools for you:</h2>
-          <span style="font-size: 15px;">💠</span> <span class="rainbow"><a href="http://alonsoaliaga.github.io/generator">HEX Generator (RBG)</a></span>
+          <span style="font-size: 15px;">💠</span> <span class="rainbow" style="color:transparent"><a href="http://alonsoaliaga.github.io/generator">HEX Generator (RBG)</a></span>
           <br><br><br>
-          <h2 style="font-size: 18px ;text-align: center; font-family: MinecraftBold;"><a href="https://alonsoaliaga.github.io" rel="noopener" target="_blank">AlonsoAliaga Development</a></h2>
+          <h2 style="color: transparent;font-size: 18px ;text-align: center; font-family: MinecraftBold;"><a href="https://alonsoaliaga.github.io" rel="noopener" target="_blank">AlonsoAliaga Development</a></h2>
           <!-- <ol id="examples_list">
           {% for example in examples %}
             <li><a href="?yaml={{ example|urlencode }}">{{ example|slice:"40"|escape }}...</a></li>
@@ -109,9 +109,17 @@
   <script src="jquery-1.6.1.min.js"></script>
   <script src="urldecode.js"></script>
   <script src="autoresize.jquery.min.js"></script>
+  <!-- <script src="script.js"></script> -->
   
-  <script src="script.js"></script>
-  <!-- <script>
+  <script>
+  function toggleDarkmode() {
+      if (document.getElementById('darkmode').checked == true) {
+        document.body.classList.add('dark');
+      } else {
+        document.body.classList.remove('dark');
+      }
+      //console.log("Dark mode is now: "+(document.getElementById('darkmode').checked))
+  }
   $(function() {
     var submit = function() {
       $("#yaml_form").submit();
@@ -171,6 +179,6 @@
     }).keydown();
 
   });
-  </script> -->
+  </script>
   </body>
 </html>
