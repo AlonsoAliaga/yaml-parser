@@ -138,7 +138,7 @@
         type: $('input:radio[name=type]:checked').val()
       };
       $.ajax({
-        url: "yaml-parser/ajax?callback=?",
+        url: "http://yaml-online-parser.appspot.com/ajax?callback=?",
         data: inputData,
         success: function(data) {
           $("#output").text(data);
