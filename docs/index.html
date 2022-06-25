@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <link rel="shortcut icon" href="https://cdn.discordapp.com/emojis/791742603183259648.webp?size=96&quality=lossless" type="image/x-icon">
+    <link rel="stylesheet" href="./style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  
+    <title>YAML Parser | AlonsoAliaga Development</title>
+    
+    <meta name="theme-color" content="#9a14ff"/>
+    <meta property="og:title" content="YAML Parser | AlonsoAliaga Development">
+    <meta property="og:image" content="https://raw.githubusercontent.com/AlonsoAliaga/alonsoaliaga.github.io/main/assets/img/apple-touch-icon.png">
+    <meta property="og:description" content="Online YAML Parser to validate YAML files!">
+    <meta property="og:url" content="https://alonsoaliaga.github.io/index.html">
+    <!-- <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-149816-8', 'auto');
+      ga('set', 'anonymizeIp', true);
+      ga('send', 'pageview');
+    </script> -->
+  </head>
+  <body>
+    <div class="content">
+      <div class="header">
+        <h1 style="font-family: MinecraftBold;">Online <a href="https://yaml.org/" rel="noopener" target="_blank">YAML</a> Parser</h1>
+        
+        <!-- <input style="width: 100px;" class="form-control" id="emojis" type="button" maxlength="100" placeholder="Pick your emoji"
+        value="Dark mode 👁‍🗨" onclick="javascript: toggleDarkmode()"> -->
+        <span style="font-family: MinecraftBold;">Options:</span>
+        <div id="appearance" style="display: inline-block;font-family: MinecraftBold;">
+          <input type="checkbox" checked id="darkmode" onclick="toggleDarkmode();"></input>
+          <label for="darkmode" style="margin-bottom: 0px;margin-top: 0px;"> Dark Mode 👁‍🗨</label>
+        </div>
+        <br>
+        <br>
+      </div>
+      <div id="left">
+        <form id="yaml_form" method="POST" action="/">
+          <textarea id="yaml" class="yaml" name="yaml">{{ yaml }}</textarea>
+          <div style="font-family: MinecraftRegular;">
+            Output:
+            <input type="radio" name="type" id="type_json" value="json"
+            {% ifequal type "json" %}checked="checked"{% endifequal %}>
+            <label for="type_json">json</label>
+            <input type="radio" name="type" id="type_python" value="python"
+            {% ifequal type "python" %}checked="checked"{% endifequal %}>
+            <label for="type_python">python</label>
+            <input type="radio" name="type" id="type_canonical_yaml" value="canonical_yaml"
+            {% ifequal type "canonical_yaml" %}checked="checked"{% endifequal %}>
+            <label for="type_canonical_yaml">canonical yaml</label>
+
+            <!-- <a id="link" href="?yaml={{ yaml|urlencode }}&type={{ type|urlencode }}">
+              Link to this page
+            </a> -->
+
+          </div>
+          <!-- <div id="pay_my_bills">
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <ins class="adsbygoogle"
+              style="display:inline-block;width:468px;height:60px"
+              data-ad-client="ca-pub-7342863608664054"
+              data-ad-slot="1929248609"></ins>
+            <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+          </div> -->
+        </form>
+        <form id="url_form" action="/">
+          <input name="url" value="{{ url|default:"http://" }}">
+          <input style="font-family: MinecraftBold;" type="submit" value="Validate URL">
+        </form>
+      </div>
+      <div id="right">
+        <div class="code">
+          <h2 style="font-family: MinecraftBold;">Output</h2>
+          <pre id="output">{{ output|escape }}</pre>
+        </div>
+        <div style="font-size: 18px ;padding-top: 20px;padding-bottom: 20px; font-family: MinecraftRegular;" class="examples">
+          <h2 style="font-size: 18px ;text-align: left; font-family: MinecraftBold;">More tools for you:</h2>
+          <span style="font-size: 15px;">💠</span> <span class="rainbow">HEX Generator (RBG)</span>
+          <br><br><br>
+          <h2 style="font-size: 18px ;text-align: center; font-family: MinecraftBold;"><a href="https://alonsoaliaga.github.io" rel="noopener" target="_blank">AlonsoAliaga Development</a></h2>
+          <!-- <ol id="examples_list">
+          {% for example in examples %}
+            <li><a href="?yaml={{ example|urlencode }}">{{ example|slice:"40"|escape }}...</a></li>
+          {% endfor %}
+          </ol> -->
+        </div>
+      </div>
+      <div class="clear">
+        <br>
+      <div style="font-family: MinecraftBold;" class="footer">
+        Project inspired in <a href="http://yaml-online-parser.appspot.com">Online YAML Parser</a>. An <a href="https://github.com/ptarjan/online-yaml-parser">open source</a> project created by Paul Tarjan.
+      </div>
+      <div id="mybutton">
+        <button class="buttonface"><a href="https://alonsoaliaga.github.io"><img src="https://raw.githubusercontent.com/AlonsoAliaga/alonsoaliaga.github.io/main/assets/img/apple-touch-icon.png"></a></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- <script src="js/jquery-1.6.1.min.js"></script> -->
+  <script src="js/urldecode.js"></script>
+  <script src="js/autoresize.jquery.min.js"></script>
+  
+  <script src="script.js"></script>
+  <script>
+  $(function() {
+    var submit = function() {
+      $("#yaml_form").submit();
+      return false;
+    };
+    $('#yaml').keyup(function() {
+      $("#yaml_form").submit();
+    });
+    $('input:radio[name=type]').click(function() {
+      $("#yaml_form").submit();
+    });
+
+    $("#yaml_form").submit(function(ev) {
+      var inputData = {
+        yaml: $("#yaml").val(),
+        type: $('input:radio[name=type]:checked').val()
+      };
+      $.ajax({
+        url: "/ajax?callback=?",
+        data: inputData,
+        success: function(data) {
+          $("#output").text(data);
+          console.log(data);
+          if (data.match(/^ERROR/)) {
+            $("#output").wrapInner('<span class="error"/>');
+          }
+          $("#link").attr("href", "?" + $.param(inputData));
+        },
+        error: function() {
+          $("#output").text("An error occured. Try again? Or contact me.");
+        },
+        type: "POST",
+        dataType: "json",
+      });
+      return false;
+    });
+
+    $("#examples_list a").click(function() {
+      $("#yaml").val(urldecode($(this).attr("href").replace("?yaml=", "")));
+      $("#yaml_form").submit();
+      return false;
+    });
+
+    $('textarea#yaml').autoResize({
+      // On resize:
+      onResize: function() {
+        $(this).css({opacity: 0.8});
+      },
+      // After resize:
+      animateCallback: function() {
+        $(this).css({opacity: 1});
+      },
+      // Quite slow animation:
+      animateDuration: 300,
+      // More extra space:
+      extraSpace: 40
+    }).keydown();
+
+  });
+  </script>
+  </body>
+</html>
