@@ -115,6 +115,7 @@ body {
     padding: 0;
     border: none;
     background: none;
+    font-family: MinecraftRegular;
   }
   #yaml {
     width: 100%;
