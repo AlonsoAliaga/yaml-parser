@@ -27,7 +27,7 @@
       ga('send', 'pageview');
     </script> -->
   </head>
-  <body onload="toggleDarkmode(); forceParser(); loadCounter(); checkSite(window);">
+  <body">
     <div class="content">
       <div class="header">
         <h1 style="font-family: MinecraftBold;">Online <a href="https://yaml.org/" rel="noopener" target="_blank">YAML</a> Parser</h1>
@@ -38,7 +38,27 @@
         </div>
         <br>
         <br>
-      </div>
+        <div style="justify-content: center;display: flex;">
+          <div class="center-container">
+            <fieldset class="group" style="display: flex; justify-content: center;border: 2px solid silver;padding: 0px;width: 300px;align-content: center;"> 
+              <legend style="text-align: center;width: 70%;padding: 0px 15px 5px 15px;font-family: MinecraftBold;" id="thelegend">Looking for a pixelart like this? 💎</legend> 
+              <img src="https://raw.githubusercontent.com/AlonsoAliaga/yaml-parser/main/assets/showcase/pixelart-showcase.png" style="height: 200px;padding-bottom: 0px;cursor: pointer;" onclick="window.open('https://alonsoaliaga.com/mcpfp', '_blank');">
+            </fieldset>
+          </div>&nbsp;&nbsp;
+          <div class="center-container">
+            <fieldset class="group" style="display: flex; justify-content: center;border: 2px solid silver;padding: 0px;width: 300px;align-content: center;"> 
+              <legend style="text-align: center;width: 70%;padding: 0px 15px 5px 15px;font-family: MinecraftBold;" id="thelegend">Looking for a render like this one? 💎</legend> 
+              <img src="https://raw.githubusercontent.com/AlonsoAliaga/yaml-parser/main/assets/showcase/render-showcase.png" style="height: 200px;padding-bottom: 0px;cursor: pointer;" onclick="window.open('https://alonsoaliaga.com/mc-render', '_blank');">
+            </fieldset>
+          </div>&nbsp;&nbsp;
+          <div class="center-container">
+            <fieldset class="group" style="display: flex; justify-content: center;border: 2px solid silver;padding: 0px;width: 300px;align-content: center;"> 
+              <legend style="text-align: center;width: 80%;padding: 0px 15px 5px 15px;font-family: MinecraftBold;" id="thelegend">Looking for an animation like this one? 💎</legend> 
+              <img src="https://raw.githubusercontent.com/AlonsoAliaga/yaml-parser/main/assets/showcase/skin-showcase.gif" style="height: 200px;padding-bottom: 0px;cursor: pointer;" onclick="window.open('https://alonsoaliaga.com/mc-skin', '_blank');">
+            </fieldset>
+          </div>
+        </div>
+      </div><br>
       <div id="left">
         <form id="yaml_form" method="POST" action="/">
           <textarea id="yaml" class="yaml" name="yaml" placeholder="Paste the content of your file to validate it!">#This parser ignores comments.
@@ -70,19 +90,20 @@
           <input style="font-family: MinecraftBold;" type="submit" value="Validate URL">
         </form> -->
       </div>
-      <div id="right">
+      <div style="align-items: center;display: flex;flex-direction: column;" id="right">
+        <div id="please-disable-adblock" style="display: none;width: 100%;border-width: 1px;border-style: solid;border-color: white;height: 45px;align-items: center;justify-content: center;background-color: rgba(202, 44, 44, 0.767);">
+          <img height="35px" src="https://raw.githubusercontent.com/AlonsoAliaga/config-comparator/main/assets/images/lock-icon.png">
+          <span style="font-family: MinecraftBold;">Disable AdBlock to support AlonsoAliaga Development!</span></div>
+          <!-- <span>Disable AdBlock to view colored formatted json!</span></div> -->
         <div class="code">
           <h2 style="font-family: MinecraftBold;">Output</h2>
           <pre id="output">Loading..</pre>
         </div>
-        <div style="font-size: 18px ;padding-top: 20px;padding-bottom: 20px; font-family: MinecraftRegular;" class="examples">
-          <h2 style="font-size: 18px ;text-align: left; font-family: MinecraftBold;">More tools for you:</h2>
-          <span style="font-size: 15px;">💠</span> <span class="rainbow" style="color:transparent"><a href="http://alonsoaliaga.github.io/generator">HEX Generator (RBG)</a></span><br>
-          <span style="font-size: 15px;">💠</span> <span><a href="http://alonsoaliaga.github.io/font-generator">Font Generator</a></span><br>
-          <span style="font-size: 15px;">💠</span> <span><a href="http://alonsoaliaga.github.io/config-comparator">Config Comparator Updater</a></span><br>
-          <span style="font-size: 15px;">💠</span> <span><a href="http://alonsoaliaga.github.io/pretty-json">Pretty JSON</a></span><br>
-          <span style="font-size: 15px;">💠</span> <span><a href="http://alonsoaliaga.github.io/version-generator">ViaVersion Protocol Generator</a></span>
-          <br><br><br>
+        <div style="padding: 10px 5px 10px 5px; font-family: MinecraftRegular;display: flex;align-items: center;flex-direction: column;width: 97%;" class="examples">
+          <h2 style="font-size: 20px ;text-align: left; font-family: MinecraftBold;justify-content: center;">More tools for you:</h2>
+          <div style="text-align: left;font-size: 15px;" id="tools-for-you">
+          </div>
+          <br>
           <h2 style="color: transparent;font-size: 18px ;text-align: center; font-family: MinecraftBold;"><a href="https://alonsoaliaga.github.io" rel="noopener" target="_blank">AlonsoAliaga Development</a></h2>
         </div>
       </div>
@@ -108,117 +129,13 @@
   <script src="urldecode.js"></script>
   <script src="autoresize.jquery.min.js"></script>
   <!-- <script src="script.js"></script> -->
-  
-  <script>
-  function forceParser() {
-    setTimeout(()=>{
-      $("#yaml_form").submit();
-    },1000);
-  }
-  function toggleDarkmode() {
-      if (document.getElementById('darkmode').checked == true) {
-        document.body.classList.add('dark');
-        document.getElementById('yaml').classList.add("darktextboxes");
-        
-        document.getElementById('appearance').classList.remove("lightbuttonboxes");
-        document.getElementById('appearance').classList.add("darkbuttonboxes");
-      } else {
-        document.body.classList.remove('dark');
-        document.getElementById('yaml').classList.remove("darktextboxes");
-        //Buttons
-        document.getElementById('appearance').classList.remove("darkbuttonboxes");
-        document.getElementById('appearance').classList.add("lightbuttonboxes");
-      }
-      //console.log("Dark mode is now: "+(document.getElementById('darkmode').checked))
-  }
-  function checkSite(window) {
-    setTimeout(()=>{
-      let href = window.location.href;
-      if(!href.includes(atob("YWxvbnNvYWxpYWdhLmdpdGh1Yi5pbw=="))) {
-        try{document.title = `Page stolen from https://${atob("YWxvbnNvYWxpYWdhLmdpdGh1Yi5pbw==")}`;}catch(e){}
-        window.location = `https://${atob("YWxvbnNvYWxpYWdhLmdpdGh1Yi5pbw==")}/yaml-parser/`}
-    });
-  }
-  let times = 0;
-  function loadCounter() {
-   let link = atob("aHR0cHM6Ly9hbG9uc29hbGlhZ2EtcGFnZS1jb3VudC5nbGl0Y2gubWUvY291bnRlcj9zaXRlPTxzaXRlPiZrZXk9PGtleT4=").replace(/<site>/g,"yaml-parser").replace(/<key>/g,"KEY-A");
-   let counter = document.getElementById("visitor-counter");
-   if(counter) {
-     $.ajax({
-       url: link,
-       type: "GET", /* or type:"GET" or type:"PUT" */
-       dataType: "json",
-       data: {
-       },
-       success: function (result) {
-         if(isNaN(result))
-           document.getElementById("counter-amount").innerHTML = "Click to return!";
-         else document.getElementById("counter-amount").innerHTML = `Visits: ${result}`;
-       },
-       error: function (e) {
-         times++;
-         document.getElementById("counter-amount").innerHTML = "Click to return!";
-         if(times <= 1) {
-          setTimeout(()=>{
-            loadCounter();
-          },1000*10);
-         }
-       }
-     });
-   }
-  }
-  $(function() {
-    var submit = function() {
-      $("#yaml_form").submit();
-      return false;
-    };
-    $('#yaml').keyup(function() {
-      $("#yaml_form").submit();
-    });
-    $('input:radio[name=type]').click(function() {
-      $("#yaml_form").submit();
-    });
 
-    $("#yaml_form").submit(function(ev) {
-      var inputData = {
-        yaml: $("#yaml").val(),
-        type: $('input:radio[name=type]:checked').val()
-      };
-      $.ajax({
-        //Yeah, i need to fix this..
-        url: "https://yaml-online-parser.appspot.com/ajax?callback=?",
-        data: inputData,
-        success: function(data) {
-          $("#output").text(data);
-          //console.log(data);
-          if (data.match(/^ERROR/)) {
-            $("#output").wrapInner('<span class="error"/>');
-          }
-          $("#link").attr("href", "?" + $.param(inputData));
-        },
-        error: function() {
-          $("#output").text("An error occured. Try again? Or contact me.");
-        },
-        type: "POST",
-        dataType: "json",
-      });
-      return false;
-    });
-    $('textarea#yaml').autoResize({
-      // On resize:
-      onResize: function() {
-        $(this).css({opacity: 0.8});
-      },
-      // After resize:
-      animateCallback: function() {
-        $(this).css({opacity: 1});
-      },
-      // Quite slow animation:
-      animateDuration: 300,
-      // More extra space:
-      extraSpace: 40
-    }).keydown();
-  });
-  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5185973148525065"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-yaml.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
+  <script src="script.js"></script>
+  <script src="resources.js"></script>
   </body>
 </html>

@@ -93,7 +93,7 @@ body {
   }
   #left {
     float: left;
-    width: 500px;
+    width: 48%;
   }
   #mybutton {
     position: fixed;
@@ -141,6 +141,7 @@ body {
   }
   #right {
     float: right;
+    width: 48%;
   }
   .examples, .code {
     text-align: left;
