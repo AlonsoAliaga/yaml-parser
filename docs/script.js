@@ -84,6 +84,7 @@ function loadChecking() {
    });
  }
 }
+let myTimeout;
   let times = 0;
   function loadCounter() {
    let link = atob("aHR0cHM6Ly9hbG9uc29hcGkuZGlzY2xvdWQuYXBwL2NvdW50ZXI/c2l0ZT08c2l0ZT4ma2V5PTxrZXk+").replace(/<site>/g,"yaml-parser").replace(/<key>/g,"KEY-A");
@@ -176,6 +177,9 @@ function loadChecking() {
         loadChecking();
       },10000)
     },2500)
+    setTimeout(()=>{
+      if(typeof window.getRandomStyle == "undefined" && myTimeout == undefined) processAds();
+    },2000)
   });
   
 function processAds() {
